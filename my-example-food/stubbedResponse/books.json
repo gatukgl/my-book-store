@@ -1,6 +1,5 @@
 {
-  "meta": {},
-  "data": [
+  "books": [
     {
       "id": 1,
       "bookName": "Harry Potter and the Sorcerer's Stone",
