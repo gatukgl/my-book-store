@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 export const BookCard = ({ book }) => (
-  <div className="col mb-5">
+  <div className="col mb-5" role="bookCard">
     <div className="card h-100">
       <img className="card-img-top" src={book.coverImage} alt={book.bookName} />
 
