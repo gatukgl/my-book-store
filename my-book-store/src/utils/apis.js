@@ -5,7 +5,7 @@ const axiosInstance = axios.create({
   timeout: 1000,
 })
 
-export const getBooks = async () => {
+const getBooks = async () => {
   try {
     const response = await axiosInstance.get(`books`)
     const data = response.data
@@ -14,6 +14,7 @@ export const getBooks = async () => {
     console.error('[getBooks]', error)
   }
 }
+export default getBooks
 
 export const getBooksById = async (id) => {
   try {
