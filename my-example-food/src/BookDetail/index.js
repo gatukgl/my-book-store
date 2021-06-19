@@ -1,12 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import { getBooksById } from '../utils/apis'
 import { BookDetailPresentation } from './presentation'
 
 export const BookDetail = () => {
-  useEffect(() => {
-    getBooksById(1)
+  const [book, setBook] = useState({})
+
+  useEffect(async () => {
+    const book = await getBooksById(1)
+    setBook(book)
   }, [])
 
-  return <BookDetailPresentation />
+  return <BookDetailPresentation book={book} />
 }
