@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export function addToCartHook() {
+export const AddToCartHook = () => {
   const [isAddedToCart, setIsAddedToCart] = useState(false)
 
   const addToCart = (isAdded) => {

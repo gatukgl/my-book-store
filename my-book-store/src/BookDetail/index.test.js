@@ -5,7 +5,7 @@ import { fireEvent } from '@testing-library/dom'
 import { renderHook, act } from '@testing-library/react-hooks'
 
 import { BookDetail } from './index'
-import { addToCartHook } from './hooks'
+import { AddToCartHook } from './hooks'
 
 describe('Adding book to cart', () => {
   beforeEach(() => {
@@ -31,7 +31,7 @@ describe('Adding book to cart', () => {
   })
 
   test('should set isAddedToCart to true when sending true', () => {
-    const { result } = renderHook(() => addToCartHook())
+    const { result } = renderHook(() => AddToCartHook())
 
     act(() => {
       result.current.addToCart(true)
@@ -41,7 +41,7 @@ describe('Adding book to cart', () => {
   })
 
   test('should set isAddedToCart to false when sending false', () => {
-    const { result } = renderHook(() => addToCartHook())
+    const { result } = renderHook(() => AddToCartHook())
 
     act(() => {
       result.current.addToCart(false)
