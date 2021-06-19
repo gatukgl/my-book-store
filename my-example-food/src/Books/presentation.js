@@ -7,7 +7,7 @@ export const BooksPresentation = ({ books }) => (
 
       <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         {books.map((book) => (
-          <BookCard book={book} />
+          <BookCard id={book.id} book={book} />
         ))}
       </div>
     </div>

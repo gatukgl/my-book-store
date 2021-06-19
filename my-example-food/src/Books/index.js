@@ -6,9 +6,13 @@ import { BooksPresentation } from './presentation'
 export const Books = () => {
   const [books, setBooks] = useState([])
 
-  useEffect(async () => {
-    const books = await getBooks()
-    setBooks(books)
+  useEffect(() => {
+    async function fetchData() {
+      const books = await getBooks()
+      setBooks(books)
+    }
+
+    fetchData()
   }, [])
 
   return <BooksPresentation books={books} />

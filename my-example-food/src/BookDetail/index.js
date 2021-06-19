@@ -8,10 +8,14 @@ export const BookDetail = () => {
   const { id } = useParams()
   const [book, setBook] = useState({})
 
-  useEffect(async () => {
-    const book = await getBooksById(id)
-    setBook(book)
-  }, [])
+  useEffect(() => {
+    async function fetchData() {
+      const book = await getBooksById(id)
+      setBook(book)
+    }
+
+    fetchData()
+  }, [id])
 
   return <BookDetailPresentation book={book} />
 }
