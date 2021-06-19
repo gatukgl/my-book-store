@@ -1,20 +1,13 @@
+import { BookDetail } from './BookDetail/BookDetail'
+import { Books } from './AllBooks/Books'
+
 function App() {
   return (
-    <div>
-      <header>
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <BookDetail />
+      <Books />
+    </>
+  )
 }
 
-export default App;
+export default App
