@@ -7,6 +7,7 @@ import { BookDetailPresentation } from './presentation'
 export const BookDetail = () => {
   const { id } = useParams()
   const [book, setBook] = useState({})
+  const [isAddedToCart, setIsAddedToCart] = useState(false)
 
   useEffect(() => {
     async function fetchData() {
@@ -17,5 +18,15 @@ export const BookDetail = () => {
     fetchData()
   }, [id])
 
-  return <BookDetailPresentation book={book} />
+  const onAddToCartClicked = () => {
+    const shouldAdded = !isAddedToCart
+    setIsAddedToCart(shouldAdded)
+  }
+
+  return (
+    <BookDetailPresentation
+      book={book}
+      onAddToCartClicked={onAddToCartClicked}
+    />
+  )
 }

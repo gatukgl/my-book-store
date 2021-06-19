@@ -1,4 +1,4 @@
-export const BookDetailPresentation = ({ book }) => (
+export const BookDetailPresentation = ({ book, onAddToCartClicked }) => (
   <div>
     <section className="py-5">
       <div className="container px-4 px-lg-5">
@@ -29,6 +29,8 @@ export const BookDetailPresentation = ({ book }) => (
               <button
                 className="btn btn-outline-dark flex-shrink-0"
                 type="button"
+                onClick={onAddToCartClicked}
+                role="addToCart"
               >
                 <i className="bi-cart-fill me-1" />
                 Add to cart
