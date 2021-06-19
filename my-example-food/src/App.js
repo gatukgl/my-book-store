@@ -1,11 +1,19 @@
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 import { BookDetail } from './BookDetail'
-import { Books } from './AllBooks/Books'
+import { Books } from './Books'
 
 function App() {
   return (
     <>
-      <BookDetail />
-      <Books />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Books />
+          </Route>
+          <Route path="/:id" children={<BookDetail />}></Route>
+        </Switch>
+      </Router>
     </>
   )
 }
