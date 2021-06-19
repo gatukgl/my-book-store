@@ -1,4 +1,4 @@
-export const BookDetail = () => (
+export const BookDetailPresentation = () => (
   <div>
     <section className="py-5">
       <div className="container px-4 px-lg-5">

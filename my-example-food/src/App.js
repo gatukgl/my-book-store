@@ -1,4 +1,4 @@
-import { BookDetail } from './BookDetail/BookDetail'
+import { BookDetail } from './BookDetail'
 import { Books } from './AllBooks/Books'
 
 function App() {
