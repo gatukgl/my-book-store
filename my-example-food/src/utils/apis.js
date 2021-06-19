@@ -5,8 +5,22 @@ const axiosInstance = axios.create({
   timeout: 1000,
 })
 
+export const getBooks = async () => {
+  try {
+    const response = await axiosInstance.get(`books`)
+    const data = response.data
+    return data
+  } catch (error) {
+    console.error('[getBooks]', error)
+  }
+}
+
 export const getBooksById = async (id) => {
-  const response = await axiosInstance.get(`books/${id}`)
-  const data = response.data
-  return data
+  try {
+    const response = await axiosInstance.get(`books/${id}`)
+    const data = response.data
+    return data
+  } catch (error) {
+    console.error('[getBooksById]', error)
+  }
 }
