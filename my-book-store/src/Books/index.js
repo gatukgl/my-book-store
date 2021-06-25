@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import getBooks from '../utils/apis'
+import { getBooks } from '../utils/apis'
 
 import { BooksPresentation } from './presentation'
 
