@@ -3,10 +3,12 @@ import { useParams } from 'react-router-dom'
 
 import { getBooksById } from '../utils/apis'
 import { BookDetailPresentation } from './presentation'
+import { useAddToCart } from './Hooks'
 
 export const BookDetail = () => {
   const { id } = useParams()
   const [book, setBook] = useState({})
+  const { isAddToCart, addToCart } = useAddToCart()
 
   useEffect(() => {
     async function fetchData() {
@@ -17,5 +19,15 @@ export const BookDetail = () => {
     fetchData()
   }, [id])
 
-  return <BookDetailPresentation book={book} />
+  const onAddToCartClicked = () => {
+    const newIsAddToCart = !isAddToCart
+    addToCart(newIsAddToCart)
+  }
+
+  return (
+    <BookDetailPresentation
+      book={book}
+      onAddToCartClicked={onAddToCartClicked}
+    />
+  )
 }
