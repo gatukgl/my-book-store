@@ -8,6 +8,7 @@ export const axiosInstance = axios.create({
 const getBooks = async () => {
   try {
     const response = await axiosInstance.get(`books`)
+    console.log('data')
     const data = response.data
     return data
   } catch (error) {

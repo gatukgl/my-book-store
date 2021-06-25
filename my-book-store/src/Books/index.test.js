@@ -1,48 +1,60 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import moxios from 'moxios'
 
 import { Books } from '.'
+import { axiosInstance } from '../utils/apis'
 
-xdescribe('Books', () => {
+describe('Books', () => {
   beforeEach(() => {
-    moxios.install()
+    moxios.install(axiosInstance)
   })
 
   afterEach(() => {
-    moxios.uninstall()
+    moxios.uninstall(axiosInstance)
+    jest.resetAllMocks()
   })
 
-  test('should render 0 book card when api return 0 book', () => {
+  test('should render 0 book card when api return 0 book', async () => {
+    act(() => {
+      render(<Books />)
+    })
+
     const stubBooks = []
-    moxios.stubRequest('books', () => {
-      return {
+    moxios.wait(() => {
+      const request = moxios.requests.mostRecent()
+      request.respondWith({
         status: 200,
         response: stubBooks,
-      }
+      })
     })
-
-    render(<Books />)
-
-    const actual = screen.findAllByRole('bookCard')
-    moxios.wait(() => {
-      expect(actual.length).toEqual(0)
-    })
+    const booksScreen = await screen
+    const actual = screen.queryAllByRole('bookCard')
+    expect(actual.length).toEqual(0)
   })
 
-  test('should render 3 book card when api return 3 books', () => {
+  test('should render 3 books card when api return 3 books', async () => {
+    act(() => {
+      render(<Books />)
+    })
+
     const stubBooks = [{ id: 1 }, { id: 2 }, { id: 3 }]
-    moxios.stubRequest('books', () => {
-      return {
-        status: 200,
-        response: stubBooks,
-      }
-    })
-
-    render(<Books />)
-
-    const actual = screen.findAllByRole('bookCard')
     moxios.wait(() => {
-      expect(actual.length).toEqual(3)
+      moxios.stubRequest('books', () => {
+        return {
+          status: 200,
+          response: stubBooks,
+        }
+      })
+      // const request = moxios.requests.mostRecent()
+      // request.respondWith({
+      // status: 200,
+      // response: stubBooks,
+      // })
     })
+    const booksScreen = await screen
+    expect(1).toBe(2)
+    // booksScreen.debug()
+    // const actual = screen.queryAllByRole('bookCard')
+    // expect(actual.length).toEqual(3)
   })
 })

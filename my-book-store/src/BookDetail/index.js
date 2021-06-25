@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { getBooksById } from '../utils/apis'
@@ -7,13 +7,14 @@ import { AddToCartHook } from './hooks'
 
 export const BookDetail = () => {
   const { id } = useParams()
-  const [book, setBook] = useState({})
+  const [book, setBook] = React.useState({})
 
   const { isAddedToCart, addToCart } = AddToCartHook()
 
   useEffect(() => {
     async function fetchData() {
       const book = await getBooksById(id)
+      console.log('yay')
       setBook(book)
     }
 
