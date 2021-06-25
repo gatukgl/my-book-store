@@ -3,14 +3,34 @@ import { render, screen, act } from '@testing-library/react'
 import moxios from 'moxios'
 
 import { BookDetail } from './index'
-import { axiosInstance } from '../utils/apis'
+import { axiosInstance, getBooksById } from '../utils/apis'
 
 jest.mock('react-router', () => ({
   ...jest.requireActual('react-router'),
   useParams: () => ({ id: 1 }),
 }))
 
-describe('Book Details', () => {
+jest.mock('../utils/apis', () => ({
+  ...jest.requireActual('../utils/apis'),
+  getBooksById: jest.fn(),
+}))
+
+describe('Books Details with manual mock', () => {
+  test('should render details', async () => {
+    await getBooksById.mockImplementation(() =>
+      Promise.resolve({ id: 1, bookName: 'AAAA' })
+    )
+
+    await act(async () => {
+      await render(<BookDetail />)
+    })
+
+    let book = await screen.getAllByText('AAAA')
+    expect(book).not.toBeNull()
+  })
+})
+
+xdescribe('Book Details', () => {
   beforeEach(() => {
     moxios.install(axiosInstance)
   })
